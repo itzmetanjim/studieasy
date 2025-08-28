@@ -6,17 +6,63 @@
     <!--Tailwind CSS-->
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Studieasy</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <!-- Navbar with tabs: Upload and Generate-->
-    <nav class="bg-blue-600 p-4">
+    <nav class="p-4 navbar">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="text-white text-2xl font-bold">Studieasy</div>
-            <div>
-                <a href="#" class="text-white px-4 py-2 rounded hover:bg-blue-700">Upload</a>
-                <a href="#" class="text-white px-4 py-2 rounded hover:bg-blue-700">Generate</a>
+            <div class="text-white text-2xl font-bold pr-10">Studieasy</div>
+
+            <div class="px-4 py-2 rounded tabbtn w-full flex items-center justify-center active">
+                <div onclick="showTab(0)">
+                <svg class="w-6 h-6 text-white inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                <a href="#" class="text-white">Upload</a>
+                </div>
+            </div>
+
+            <div class="px-4 py-2 rounded tabbtn w-full flex items-center justify-center">
+                <div onclick="showTab(1)">
+                <svg class="w-6 h-6 text-white inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 2h6l5 5v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h3z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2v6h6"></path>
+                </svg>
+                <a href="#" class="text-white ">Generate</a>
+                </div>
             </div>
         </div>
     </nav>
+
+    <!-- Upload Tab Content -->
+    <div id="uploadTab flex flex-col">
+        <div class="container ml-[5%] p-4 w-[20%]">
+            <form id="uploadForm" class="bg-white p-6 rounded shadow-md">
+                <div class="mb-4">
+                    <label id="customLabel" class="block text-gray-700 font-bold mb-2">Select a directory:</label>
+                    <div class="w-full p-4 border-2 border-dashed border-gray-300 rounded">
+                        <div class="flex items-center justify-between">
+                            <button type="button" id="directoryBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
+                                Choose Directory
+                            </button>
+                            <span id="directoryPath" class="ml-4 text-sm text-gray-600">No directory chosen</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Select a directory to work with</p>
+                    </div>
+                </div>
+                <button id="openDirectoryBtn" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Open Directory</button>
+            </form>
+        </div>
+        <div class="container ml-[5%] p-4 w-full h-full bg-white p-6 rounded shadow-md">
+
+        </div>
+    </div>
+
+    <!-- Generate Tab Content -->
+    <div id="generateTab">
+          </div>
+
+    <script src="index.js"></script>
 </body>
 </html>
