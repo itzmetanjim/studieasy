@@ -1,0 +1,20 @@
+.navbar {
+    background-color: rgba(59, 130, 246, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.tabbtn {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tabbtn:hover {
+    background-color: rgba(59, 130, 246, 0.5);
+    color: white;
+}
+.tabbtn.active {
+    background-color: rgba(59, 130, 246, 0.7);
+    color: white;
+}
+.hide {
+    display: none;
+}
