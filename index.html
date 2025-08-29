@@ -7,14 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Studieasy</title>
     <link rel="stylesheet" href="index.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- PDF.js and Simple PDF Thumbnail scripts -->
-    <script src="pdfThumbnails.js" data-pdfjs-src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.js"></script>
     
 </head>
 <body>
@@ -52,18 +45,18 @@
             <div class="mb-4">
             <label id="customLabel" class="block text-gray-700 font-bold mb-2">Select a directory:</label>
             <div class="w-full p-4 border-2 border-dashed border-gray-300 rounded">
-                <div class="flex items-center justify-between">
-                <button type="button" id="directoryBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
+                <div class="flex-col items-center justify-between">
+                <button type="button" id="directoryBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none w-full">
                 Choose Directory
-                </button><br>
-                <p id="directoryPath" class="ml-4 text-sm text-gray-600 text-wrap">No directory chosen</p>
+                </button>
+                <p id="directoryPath" class="ml-4 text-sm text-gray-600 text-wrap mt-3">No directory chosen</p>
                 </div>
                 <p class="text-xs text-gray-500 mt-2">Select a directory to work with</p>
             </div>
             </div>
             <button id="openDirectoryBtn" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Open Directory</button>
             </form>
-<!-- Workspace section -->
+            <!-- Workspace section -->
             </div>
             <div class="flex-1 p-4 h-[100%] overflow-hidden">
             <div class="bg-white h-[100%] rounded shadow-md p-6 flex flex-col">
@@ -87,6 +80,7 @@
     <script src="index.js"></script>
     <footer class="text-sm text-gray-600 p-4">
         <a href="https://www.flaticon.com/free-icons/folder" title="folder icons">Folder icons created by kmg design - Flaticon</a>  
+        <a href="https://www.flaticon.com/free-icons/pdf" title="pdf icons">File icons created by Roman Káčerek - Flaticon</a>
     </footer>
 </body>
 </html>

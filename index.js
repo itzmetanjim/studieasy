@@ -377,18 +377,18 @@ function renderWorkspaceGrid(directoryHandle = currentDirectoryHandle) {
                     }
                     var fr = new FileReader();
                     fr.onload = createImage;   //onload fires after reading is complete
-                    fr.readAsDataURL(new File([file.handle],file.name));    //begin reading
+                    // Read the actual file content
+                    file.handle.getFile().then(fileObj => fr.readAsDataURL(fileObj));
                 }
                 else if (["mp4","mkv","mov","wmv"].includes(ext.replace('.',''))){
-                    //get the video, then get a frame of it
-                    createThumb = ()=>{
+                    // get the video, then get a frame of it
+                    const createThumb = () => {
                         const tempVideo = document.createElement('video');
                         tempVideo.src = fr.result;
                         tempVideo.width = 200;
                         document.body.appendChild(tempVideo);
                         const canvasElement = document.createElement('canvas');
-                        canvasElement.getContext('2d').drawImage(tempVideo,0,0);
-                        tempVideo.style.display = 'none';
+                        canvasElement.getContext('2d').drawImage(tempVideo, 0, 0);
                         tempVideo.remove();
                         const thumbnail = canvasElement.toDataURL('image/png');
                         const imgElement = document.createElement('img');
@@ -397,29 +397,52 @@ function renderWorkspaceGrid(directoryHandle = currentDirectoryHandle) {
                         imgElement.setAttribute('class', 'mx-auto block mt-5');
                         imgElement.setAttribute('width', '200');
                         fileElement.appendChild(imgElement);
-                    }
-                    var fr = new FileReader();
+                    };
+                    const fr = new FileReader();
                     fr.onload = createThumb;
-                    fr.readAsDataURL(new File([file.handle],file.name));
+                    // Read the actual video file content
+                    file.handle.getFile().then(fileObj => fr.readAsDataURL(fileObj));
                 }
                 else if (ext === '.pdf'){
-                    //render pdf thumbnail using pdfThumbnails.js
                     const imgElement = document.createElement('img');
                     imgElement.setAttribute('alt', `${file.name} PDF thumbnail`);
                     imgElement.setAttribute('class', 'mx-auto block mt-5');
                     imgElement.setAttribute('width', '200');
-                    imgElement.setAttribute('src','file_icons/pdf.png'); //while load
+                    imgElement.setAttribute('src', 'file_icons/pdf.png'); // placeholder
                     fileElement.appendChild(imgElement);
-                    var fr = new FileReader();
-                    loadThumb = ()=>{
-                        imgElement.removeAttribute('src')
-                        imgElement.setAttribute('data-pdf-thumbnail-file',fr.result)
-                    }
+                    const fr = new FileReader();
+                    const loadThumb = () => {
+                        var canvas = document.createElement('canvas');
+                        var context = canvas.getContext('2d');
+                        pdfjsLib.getDocument(fr.result).promise.then((pdf) => {
+                            pdf.getPage(1).then((page) => {
+                                var desiredWidth = 200;
+                                var viewport = page.getViewport({ scale: 1 });
+                                var scale = desiredWidth / viewport.width;
+                                var outputScale = window.devicePixelRatio || 1;
+                                var scaledViewport = page.getViewport({ scale: scale });
+                                canvas.width = Math.floor(scaledViewport.width * outputScale);
+                                canvas.height = Math.floor(scaledViewport.height * outputScale);
+                                context.scale(outputScale, outputScale);
+                                document.body.appendChild(canvas);
+                                var renderContext = {
+                                    canvasContext: context,
+                                    viewport: scaledViewport
+                                };
+                                page.render(renderContext).promise.then(() => {
+                                    canvas.style.display = "none";
+                                    imgElement.removeAttribute('src');
+                                    imgElement.setAttribute('src', canvas.toDataURL());
+                                });
+                            });
+                        });
+                    };
                     fr.onload = loadThumb;
-                    fr.readAsDataURL(new File([file.handle],file.name));
-
+                    // Read the actual PDF file content
+                    file.handle.getFile().then(fileObj => fr.readAsDataURL(fileObj));
                 }
-            });
+            }
+        );
 
             //Render directories
             listing.directories.forEach(dir => {
