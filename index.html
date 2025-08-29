@@ -14,7 +14,7 @@
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-white text-2xl font-bold pr-10">Studieasy</div>
 
-            <div class="px-4 py-2 rounded tabbtn w-full flex items-center justify-center active">
+            <div class="px-4 py-2 rounded tabbtn w-full flex items-center justify-center active mr-2">
                 <div onclick="showTab(0)">
                 <svg class="w-6 h-6 text-white inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -37,22 +37,36 @@
 
     <!-- Upload Tab Content -->
     <div id="uploadTab" class="">
-        <div class="w-[20%] p-4">
+        <div class="flex h-[90vh]">
+            <div class="w-[20%] p-4">
             <form id="uploadForm" class="bg-white p-6 rounded shadow-md">
-                <div class="mb-4">
-                    <label id="customLabel" class="block text-gray-700 font-bold mb-2">Select a directory:</label>
-                    <div class="w-full p-4 border-2 border-dashed border-gray-300 rounded">
-                        <div class="flex items-center justify-between">
-                            <button type="button" id="directoryBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
-                                Choose Directory
-                            </button>
-                            <span id="directoryPath" class="ml-4 text-sm text-gray-600">No directory chosen</span>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-2">Select a directory to work with</p>
-                    </div>
+            <div class="mb-4">
+            <label id="customLabel" class="block text-gray-700 font-bold mb-2">Select a directory:</label>
+            <div class="w-full p-4 border-2 border-dashed border-gray-300 rounded">
+                <div class="flex items-center justify-between">
+                <button type="button" id="directoryBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
+                Choose Directory
+                </button><br>
+                <p id="directoryPath" class="ml-4 text-sm text-gray-600 text-wrap">No directory chosen</p>
                 </div>
-                <button id="openDirectoryBtn" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Open Directory</button>
+                <p class="text-xs text-gray-500 mt-2">Select a directory to work with</p>
+            </div>
+            </div>
+            <button id="openDirectoryBtn" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Open Directory</button>
             </form>
+<!-- Workspace section -->
+            </div>
+            <div class="flex-1 p-4 h-[100%] overflow-hidden">
+            <div class="bg-white h-[100%] rounded shadow-md p-6 flex flex-col">
+            <p class="text-gray-500 mb-1 text-xs">/</p>
+            <h2 class="text-l font-bold mb-4">Workspace</h2>
+            <div id="workspaceContent" class="space-y-4 flex-1 overflow-y-auto">
+            <div class="grid grid-cols-3 gap-3" id="workspaceGrid">
+                <span class="text-sm text-gray-600">Open a folder to see the files in it.</span>
+            </div>
+            </div>
+            </div>
+            </div>
         </div>
         
     </div>
@@ -62,5 +76,8 @@
           </div>
 
     <script src="index.js"></script>
+    <footer class="text-sm text-gray-600 p-4">
+        <a href="https://www.flaticon.com/free-icons/folder" title="folder icons">Folder icons created by kmg design - Flaticon</a>
+    </footer>
 </body>
 </html>
