@@ -279,6 +279,7 @@ function renderWorkspaceGrid(directoryHandle = currentDirectoryHandle) {
     //Get the directory listing
     getDirectoryListing(directoryHandle)
         .then(listing => {
+            console.log(listing)
             //If listing is empty
             if(listing.files.length === 0 && listing.directories.length === 0) {
                 const emptyNoticeElem = document.createElement('span');
@@ -297,69 +298,72 @@ function renderWorkspaceGrid(directoryHandle = currentDirectoryHandle) {
                 fileElement.appendChild(nameElement)
                 const iconElement = document.createElement('img')
                 const endings = {
-                    '.html': 'html.png',
-                    '.css': 'other_code.png',
-                    '.js': 'js.png',
-                    '.json': 'other_code.png',
-                    '.jsx': 'other_code.png',
-                    '.ts': 'other_code.png',
-                    '.tsx': 'other_code.png',
-                    '.c': 'other_code.png',
-                    '.cpp': 'other_code.png',
-                    '.h': 'other_code.png',
-                    '.hpp': 'other_code.png',
-                    '.java': 'other_code.png',
-                    '.py': 'other_code.png',
-                    '.rb': 'other_code.png',
-                    '.go': 'other_code.png',
-                    '.rs': 'other_code.png',
-                    '.sh': 'other_code.png',
-                    '.bat': 'other_code.png',
-                    '.yml': 'other_code.png',
-                    '.yaml': 'other_code.png',
-                    '.ini': 'other_code.png',
-                    '.toml': 'other_code.png',
-                    '.php': 'other_code.png',
-                    '.cs': 'other_code.png',
-                    '.swift': 'other_code.png',
-                    '.kt': 'other_code.png',
-                    '.scala': 'other_code.png',
-                    '.lua': 'other_code.png',
-                    '.txt': 'txt.png',
-                    '.md': 'txt.png',
-                    '.zip': 'zip.png',
-                    '.pdf': 'pdf.png',
-                    '.apk': 'apk.png',
-                    '.ppt': 'ppt.png',
-                    '.xls': 'xls.png',
-                    '.doc': 'doc.png',
-                    '.docx': 'doc.png',
-                    '.iso': 'iso.png',
-                    '.eot': 'any_font_file.png',
-                    '.ttf': 'any_font_file.png',
-                    '.woff': 'any_font_file.png',
-                    '.woff2': 'any_font_file.png',
-                    '.otf': 'any_font_file.png',
-                    '.mp3': 'any_audio_file.png',
-                    '.wav': 'any_audio_file.png',
-                    '.flac': 'any_audio_file.png',
-                    '.aac': 'any_audio_file.png',
-                    '.ogg': 'any_audio_file.png',
-                    '.m4a': 'any_audio_file.png',
-                    '.wma': 'any_audio_file.png',
-                    '.mp4': 'any_video_file.png',
-                    '.mov': 'any_video_file.png',
-                    '.avi': 'any_video_file.png'
+                    '.html': 'file_icons/html.png',
+                    '.css': 'file_icons/other_code.png',
+                    '.js': 'file_icons/js.png',
+                    '.json': 'file_icons/other_code.png',
+                    '.jsx': 'file_icons/other_code.png',
+                    '.ts': 'file_icons/other_code.png',
+                    '.tsx': 'file_icons/other_code.png',
+                    '.c': 'file_icons/other_code.png',
+                    '.cpp': 'file_icons/other_code.png',
+                    '.h': 'file_icons/other_code.png',
+                    '.hpp': 'file_icons/other_code.png',
+                    '.java': 'file_icons/other_code.png',
+                    '.py': 'file_icons/other_code.png',
+                    '.rb': 'file_icons/other_code.png',
+                    '.go': 'file_icons/other_code.png',
+                    '.rs': 'file_icons/other_code.png',
+                    '.sh': 'file_icons/other_code.png',
+                    '.bat': 'file_icons/other_code.png',
+                    '.yml': 'file_icons/other_code.png',
+                    '.yaml': 'file_icons/other_code.png',
+                    '.ini': 'file_icons/other_code.png',
+                    '.toml': 'file_icons/other_code.png',
+                    '.php': 'file_icons/other_code.png',
+                    '.cs': 'file_icons/other_code.png',
+                    '.swift': 'file_icons/other_code.png',
+                    '.kt': 'file_icons/other_code.png',
+                    '.scala': 'file_icons/other_code.png',
+                    '.lua': 'file_icons/other_code.png',
+                    '.txt': 'file_icons/txt.png',
+                    '.md': 'file_icons/txt.png',
+                    '.zip': 'file_icons/zip.png',
+                    '.pdf': 'file_icons/pdf.png',
+                    '.apk': 'file_icons/apk.png',
+                    '.ppt': 'file_icons/ppt.png',
+                    '.xls': 'file_icons/xls.png',
+                    '.doc': 'file_icons/doc.png',
+                    '.docx': 'file_icons/doc.png',
+                    '.iso': 'file_icons/iso.png',
+                    '.eot': 'file_icons/any_font_file.png',
+                    '.ttf': 'file_icons/any_font_file.png',
+                    '.woff': 'file_icons/any_font_file.png',
+                    '.woff2': 'file_icons/any_font_file.png',
+                    '.otf': 'file_icons/any_font_file.png',
+                    '.mp3': 'file_icons/any_audio_file.png',
+                    '.wav': 'file_icons/any_audio_file.png',
+                    '.flac': 'file_icons/any_audio_file.png',
+                    '.aac': 'file_icons/any_audio_file.png',
+                    '.ogg': 'file_icons/any_audio_file.png',
+                    '.m4a': 'file_icons/any_audio_file.png',
+                    '.wma': 'file_icons/any_audio_file.png',
+                    '.mp4': 'file_icons/any_video_file.png',
+                    '.mov': 'file_icons/any_video_file.png',
+                    '.avi': 'file_icons/any_video_file.png'
                 };
                 
                 const ext = (file.name.match(/\.[^\.]+$/) || [''])[0].toLowerCase();
+                console.log(ext)
                 //If file cant have dynamic thumbnails (like images)
                 if(!["png","jpg","jpeg","gif","mp4","mkv","mov","wmv","pdf","svg"].includes(ext.replace('.',''))){
                     const iconName = endings[ext] || 'unrecognized_file.png';
-                    iconElement.setAttribute('src', `file_icons/${iconName}`);
+                    console.log(iconName)
+                    iconElement.setAttribute('src', `${iconName}`);
                     iconElement.setAttribute('alt', `${ext || 'file'} icon for ${file.name}`);
-                    iconElement.setAttribute('class', 'mx-auto block');
+                    iconElement.setAttribute('class', 'mx-auto mt-5 block');
                     iconElement.setAttribute('width', '200');
+                    fileElement.appendChild(iconElement);
                 }
                 else if (["png","jpg","jpeg","gif","svg"].includes(ext.replace('.',''))){
                     //Generate dynamic thumbnail
@@ -367,13 +371,13 @@ function renderWorkspaceGrid(directoryHandle = currentDirectoryHandle) {
                         const imgElement = document.createElement('img');
                         imgElement.setAttribute('src', fr.result);
                         imgElement.setAttribute('alt', `${file.name} image thumbnail`);
-                        imgElement.setAttribute('class', 'mx-auto block');
+                        imgElement.setAttribute('class', 'mx-auto block mt-5');
                         imgElement.setAttribute('width', '200');
                         fileElement.appendChild(imgElement);
                     }
                     var fr = new FileReader();
                     fr.onload = createImage;   //onload fires after reading is complete
-                    fr.readAsDataURL(file);    //begin reading
+                    fr.readAsDataURL(new File([file.handle],file.name));    //begin reading
                 }
                 else if (["mp4","mkv","mov","wmv"].includes(ext.replace('.',''))){
                     //get the video, then get a frame of it
@@ -390,13 +394,30 @@ function renderWorkspaceGrid(directoryHandle = currentDirectoryHandle) {
                         const imgElement = document.createElement('img');
                         imgElement.setAttribute('src', thumbnail);
                         imgElement.setAttribute('alt', `${file.name} video thumbnail`);
-                        imgElement.setAttribute('class', 'mx-auto block');
+                        imgElement.setAttribute('class', 'mx-auto block mt-5');
                         imgElement.setAttribute('width', '200');
                         fileElement.appendChild(imgElement);
                     }
                     var fr = new FileReader();
-                    fr.onload = createThumb;   
-                    fr.readAsDataURL(file);    
+                    fr.onload = createThumb;
+                    fr.readAsDataURL(new File([file.handle],file.name));
+                }
+                else if (ext === '.pdf'){
+                    //render pdf thumbnail using pdfThumbnails.js
+                    const imgElement = document.createElement('img');
+                    imgElement.setAttribute('alt', `${file.name} PDF thumbnail`);
+                    imgElement.setAttribute('class', 'mx-auto block mt-5');
+                    imgElement.setAttribute('width', '200');
+                    imgElement.setAttribute('src','file_icons/pdf.png'); //while load
+                    fileElement.appendChild(imgElement);
+                    var fr = new FileReader();
+                    loadThumb = ()=>{
+                        imgElement.removeAttribute('src')
+                        imgElement.setAttribute('data-pdf-thumbnail-file',fr.result)
+                    }
+                    fr.onload = loadThumb;
+                    fr.readAsDataURL(new File([file.handle],file.name));
+
                 }
             });
 
